@@ -4,41 +4,6 @@ package utils;
 import java.util.Arrays;
 
 public class MatrixUtils {
-
-    public static int[][] strToIntArray(String str) {
-        return Arrays.stream(str.split("\n"))
-                .filter(row -> !row.isEmpty())
-                .map(row -> Arrays.stream(row.split("\t"))
-                        .mapToInt(Integer::parseInt)
-                        .toArray())
-                .toArray(int[][]::new);
-    }
-    // this method is to merge the responses
-    public static int[][] constructMatFromStringArray(String[] responses, int lng, int lrg) {
-        int[][] result = new int[lng][lrg];
-
-        // Convert string responses to submatrices
-        int[][] slave00 = strToIntArray(responses[0]);
-        int[][] slave01 = strToIntArray(responses[1]);
-        int[][] slave10 = strToIntArray(responses[2]);
-        int[][] slave11 = strToIntArray(responses[3]);
-
-        for (int i = 0; i < lng; i++) {
-            for (int j = 0; j < lrg; j++) {
-                if (i < lng / 2 && j < lrg / 2) {
-                    result[i][j] = slave00[i][j];
-                } else if (i < lng / 2 && j >= lrg / 2) {
-                    result[i][j] = slave01[i][j - lrg / 2];
-                } else if (i >= lng / 2 && j < lrg / 2) {
-                    result[i][j] = slave10[i - lng / 2][j];
-                } else {
-                    result[i][j] = slave11[i - lng / 2][j - lrg / 2];
-                }
-            }
-        }
-
-        return result;
-    }
     // to slice the array
     public static int[][] slice(int[][] mat , int startLine , int startColon , int endLine , int endColon) {
         int[][] new_mat = new int[endLine - startLine ][endColon - startColon ] ;

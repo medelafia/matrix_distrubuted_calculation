@@ -4,12 +4,13 @@ import Server.Operations;
 import ressources.Config;
 import utils.MatrixUtils;
 import utils.Request;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.sql.Date;
-import java.time.Instant ;
+import java.util.logging.Logger;
 
 public class Client {
 
@@ -31,19 +32,28 @@ public class Client {
         try {
             operations = (Operations) Naming.lookup(String.format( "rmi://%s:%d/compute", hostName , port ) );
 
-            try {
-                int[][] res = operations.compute(request.getA() , request.getB() , request.getOperator()) ;
-                System.out.println(Date.from(Instant.now()) + " The result is:");
-                System.out.println(MatrixUtils.matToString(res));
-            }catch (Exception exception){
-                exception.printStackTrace();
+            int[][] res = null ;
+            switch (request.getOperator() ) {
+                case '*' :  res = operations.multiply(request.getA() , request.getB() ) ;
+                break;
+                case '-' : res = operations.add(request.getA() , request.getB() ) ;
+                break;
+                case '+' : res = operations.add(request.getA() , request.getB() ) ;
+                break;
             }
+            try(FileWriter fileWriter = new FileWriter(args[2])) {
+                fileWriter.write(MatrixUtils.matToString(res));
+                System.out.println("the operation was successful check the output file");
+            }catch (IOException e ) {
+                System.out.println(e.getMessage());
+            }
+
         } catch (NotBoundException e) {
-            e.printStackTrace( );
+            System.out.println(e.getMessage());
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         } catch (RemoteException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

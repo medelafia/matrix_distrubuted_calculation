@@ -42,9 +42,9 @@ public class SlaveServer {
                 clientHandlerService.execute(new ClientHandler(serverSocket));
             }
         } catch (SocketException e) {
-            throw new RuntimeException(e);
+            System.out.println(Date.from(Instant.now()) + e.getMessage());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(Date.from(Instant.now()) + e.getMessage());
         } finally {
             Runtime.getRuntime().addShutdownHook(new Thread(()->{
                 try {
@@ -54,7 +54,7 @@ public class SlaveServer {
                     }
 
                 }catch (InterruptedException interruptedException ) {
-                    System.out.println(interruptedException.getMessage());
+                    System.out.println(Date.from(Instant.now()) + " " + interruptedException.getMessage());
                     executorService.shutdownNow() ;
                 }
             }));

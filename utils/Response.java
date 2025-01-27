@@ -1,6 +1,5 @@
 package utils;
 
-import javax.crypto.SecretKey;
 import java.io.Serializable;
 
 public class Response implements Serializable {
@@ -10,15 +9,6 @@ public class Response implements Serializable {
         this.slaveId = slaveId ;
         this.result = result ;
     }
-    public String toStringResponse() {
-        StringBuilder responseBuilder = new StringBuilder()  ;
-        String matrix = MatrixUtils.matToString(this.result) ;
-
-        responseBuilder.append(this.slaveId).append('\n') ;
-        responseBuilder.append(matrix) ;
-        return responseBuilder.toString() ;
-    }
-
     public String getSlaveId() {
         return slaveId;
     }
