@@ -49,8 +49,8 @@ public class OperationsImpl extends UnicastRemoteObject implements Operations {
                     // Create a new thread for each slave with its own Socket
                     threads[i] = new Thread(
                             new SlaveRequestHandler(
-                                    this.serverInfoMap.get("server0").getHostName() ,
-                                    this.serverInfoMap.get("server0").getPort() ,
+                                    this.serverInfoMap.get("server"+i).getHostName() ,
+                                    this.serverInfoMap.get("server"+i).getPort() ,
                                     new Request(slaves[i], '+', slaveA[i], slaveB[i]),
                                     resultSlaves
                             )
@@ -101,8 +101,8 @@ public class OperationsImpl extends UnicastRemoteObject implements Operations {
                 // Create a new thread for each slave with its own Socket
                 threads[i] = new Thread(
                         new SlaveRequestHandler(
-                                this.serverInfoMap.get("server0").getHostName() ,
-                                this.serverInfoMap.get("server0").getPort() ,
+                                this.serverInfoMap.get("server"+i).getHostName() ,
+                                this.serverInfoMap.get("server"+i).getPort() ,
                                 new Request(slaves[i], '-', slaveA[i], slaveB[i]),
                                 resultSlaves
                         )
@@ -161,8 +161,8 @@ public class OperationsImpl extends UnicastRemoteObject implements Operations {
                 // Create a new thread for each slave with its own Socket
                 threads[i] = new Thread(
                         new SlaveRequestHandler(
-                                this.serverInfoMap.get("server0").getHostName() ,
-                                this.serverInfoMap.get("server0").getPort() ,
+                                this.serverInfoMap.get("server"+i).getHostName() ,
+                                this.serverInfoMap.get("server"+i).getPort() ,
                                 new Request(slaves[i], '*' , slaveA[i], slaveB[i]),
                                 resultSlaves
                         )
