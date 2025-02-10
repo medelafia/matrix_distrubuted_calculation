@@ -1,7 +1,7 @@
 package slaves;
 
 
-import ressources.Config;
+import utils.Config;
 import utils.Task;
 import utils.Worker;
 import java.io.*;

@@ -1,6 +1,6 @@
 package Server;
 
-import ressources.Config;
+import utils.Config;
 
 import java.io.*;
 import java.rmi.Naming;
@@ -8,13 +8,12 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.time.Instant;
 import java.util.Date;
-import java.util.Properties;
 
 public class Server {
     public static String configFilePath  ;
 
     public static void main(String[] args) {
-        if(args.length >= 1 ) {
+        if(args.length == 1 ) {
             configFilePath = args[0] ;
             Config config = new Config() ;
             config.loadConfig(configFilePath) ;
@@ -37,6 +36,7 @@ public class Server {
             }
         }else {
             System.out.println("invalid arguments please enter the application properties file path");
+            System.out.println("USAGE : java -jar Server.jar <configuration_file>");
         }
 
     }

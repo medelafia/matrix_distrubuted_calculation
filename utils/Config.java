@@ -1,10 +1,8 @@
-package ressources;
+package utils;
 
-import utils.SlaveServerInfo;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
@@ -23,7 +21,6 @@ public class Config {
 
                 String[] slaveServersHostNames = new String[4];
                 int[] slaveServersPorts = new int[4];
-                String[] slaveServerStatus = new String[ 4];
 
                 Enumeration<Object> keys = properties.keys() ;
                 while(keys.hasMoreElements()) {
